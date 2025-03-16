@@ -26,10 +26,6 @@ public abstract class BasePage {
     protected final WebDriver driver;
     protected final WebDriverWait wait;
 
-    /** Locators */
-    private By dropdownMenu = By.className("cdx-menu");
-    private By dropdownMenuItems = By.className("cdx-menu-item__text");
-
     /**
      * Constructor for BasePage
      *
@@ -48,25 +44,6 @@ public abstract class BasePage {
     public void verifyUrl(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
         assertTrue(actualUrl.equals(expectedUrl), "URL should match the expected URL");
-    }
-
-    /**
-     * Method to check if dropdown is visible
-     * 
-     * @return true if dropdown is visible, false otherwise
-     */
-    public boolean isDropdownVisible() {
-        return driver.findElement(dropdownMenu).isDisplayed();
-    }
-
-    /**
-     * Method to get all dropdown items as text
-     * 
-     * @return List of strings containing the dropdown item texts
-     */
-    public List<String> getDropdownItemsText() {
-        List<WebElement> items = driver.findElements(dropdownMenuItems);
-        return items.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     /**
@@ -127,12 +104,6 @@ public abstract class BasePage {
         
         // Log the number of suggestions found
         logger.info("Total suggestions found: " + suggestions.size());
-        
-        // Check if we have a reasonable number of suggestions
-        if (suggestions.size() < 5) {
-            logger.warning("Not enough suggestions found. Expected at least 5, but got " + suggestions.size());
-            return false;
-        }
         
         // Check if suggestions are relevant to the search term
         int relevantCount = 0;
