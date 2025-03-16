@@ -17,6 +17,8 @@ import java.util.ArrayList;
  */
 import java.util.logging.Logger;
 
+import com.example.selenium.data.TestConstants;
+
 public abstract class BasePage {
 
     private static final Logger logger = Logger.getLogger(BasePage.class.getName());
@@ -102,6 +104,9 @@ public abstract class BasePage {
                 // For debugging
                 logger.fine("Found suggestion: " + fullSuggestion);
             }
+            
+            // Log all suggestions together at INFO level with new lines
+            logger.info("List of suggestions: \n" + String.join("\n", suggestions));
             
             return suggestions;
         } catch (Exception e) {
