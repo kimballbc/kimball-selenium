@@ -140,9 +140,9 @@ public abstract class BasePage {
      * @param minimumCount the minimum expected number of suggestions
      * @return true if at least minimumCount suggestions are found
      */
-    public boolean hasMinimumSuggestionCount(int minimumCount) {
+    public boolean hasExpectedSuggestionCount(int expectedCount) {
         int count = getSuggestionCount();
-        logger.info("Found " + count + " suggestions, minimum expected: " + minimumCount);
-        return count >= minimumCount;
+        logger.info("Found " + count + " suggestions, minimum expected: " + expectedCount);
+        return count >= expectedCount;
     }
 }

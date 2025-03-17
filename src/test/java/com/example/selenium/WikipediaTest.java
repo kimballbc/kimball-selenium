@@ -55,6 +55,7 @@ public class WikipediaTest extends BaseTest {
             TestConstants.Search.SELENIUM_SOFTWARE, 
             TestConstants.Search.SELENIUM_DESCRIPTION
         );
+        assertTrue(homePage.hasExpectedSuggestionCount(1), "Expected number of search suggestions is displayed");
         assertTrue(searchResults.isDisplayed(), "Expected search result is displayed");
 
         // select result
