@@ -12,6 +12,7 @@ testWikipediaSearchSuggestionsMatchCriteria:
  - Wikipedia provides the user with typeahead searching, where it will present a list of possible search requests based off of what has already been entered in.
  - This test will enter a search term that will generate multiple results, gather those results in a list, and check each one for a substring match of the search term.
  - If the returned list has a 70% or greater match rate, it is considered a success.  This buffer was added after it was noticed not all returned results have an immediate match to the term.
+ - Current search term being used is "Java", which has a 100% match rate, if you update that search term to "Miller" you should see 5/6 results match, and the test still passes.
 
 testWikipediaExactMatchSearch:
  - This test checks against an exact match for a search term validates the result takes the user to the correct article.
