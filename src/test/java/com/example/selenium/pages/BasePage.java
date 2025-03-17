@@ -138,7 +138,7 @@ public abstract class BasePage {
      * Checks if there are an expected number of search suggestions
      * 
      * @param expected the expected number of suggestions
-     * @return true if at least minimumCount suggestions are found
+     * @return true if expectedCount suggestions are found
      */
     public boolean hasExpectedSuggestionCount(int expectedCount) {
         int count = getSuggestionCount();
