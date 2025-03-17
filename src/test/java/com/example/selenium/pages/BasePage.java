@@ -135,14 +135,14 @@ public abstract class BasePage {
     }
 
     /**
-     * Checks if there are at least a minimum number of search suggestions
+     * Checks if there are an expected number of search suggestions
      * 
-     * @param minimumCount the minimum expected number of suggestions
+     * @param expected the expected number of suggestions
      * @return true if at least minimumCount suggestions are found
      */
     public boolean hasExpectedSuggestionCount(int expectedCount) {
         int count = getSuggestionCount();
-        logger.info("Found " + count + " suggestions, minimum expected: " + expectedCount);
-        return count >= expectedCount;
+        logger.info("Found " + count + " suggestions, expected: " + expectedCount);
+        return count == expectedCount;
     }
 }
