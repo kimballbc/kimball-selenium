@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.ArrayList;
 
 /**
@@ -17,14 +16,18 @@ import java.util.ArrayList;
  */
 import java.util.logging.Logger;
 
-import com.example.selenium.data.TestConstants;
-
 public abstract class BasePage {
 
     private static final Logger logger = Logger.getLogger(BasePage.class.getName());
 
     protected final WebDriver driver;
     protected final WebDriverWait wait;
+
+    // Locators
+    private final By suggestionsDropdownLocator = By.className("suggestions-dropdown");
+    private final By suggestionLinksLocator = By.className("suggestion-link");
+    private final By suggestionTitleLocator = By.className("suggestion-title");
+    private final By suggestionDescriptionLocator = By.className("suggestion-description");
 
     /**
      * Constructor for BasePage
@@ -54,24 +57,21 @@ public abstract class BasePage {
     public List<String> getSearchSuggestions() {
         try {
             // Wait for the suggestions dropdown to appear
-            By suggestionsDropdownLocator = By.className("suggestions-dropdown");
             wait.until(ExpectedConditions.visibilityOfElementLocated(suggestionsDropdownLocator));
             
             // Get all suggestion links
-            By suggestionLinksLocator = By.className("suggestion-link");
             List<WebElement> suggestionLinks = driver.findElements(suggestionLinksLocator);
-            
             logger.info("Found " + suggestionLinks.size() + " suggestion links");
             
             // Extract text from each suggestion
             List<String> suggestions = new ArrayList<>();
             for (WebElement link : suggestionLinks) {
                 // Get title
-                WebElement titleElement = link.findElement(By.className("suggestion-title"));
+                WebElement titleElement = link.findElement(suggestionTitleLocator);
                 String title = titleElement.getText();
                 
                 // Get description
-                WebElement descElement = link.findElement(By.className("suggestion-description"));
+                WebElement descElement = link.findElement(suggestionDescriptionLocator);
                 String description = descElement.getText();
                 
                 // Combine title and description
